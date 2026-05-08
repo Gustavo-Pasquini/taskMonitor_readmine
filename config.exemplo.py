@@ -1,0 +1,2 @@
+SECRET_REDMINE_URL    = "URL"
+SECRET_API_KEY        = "API KEY"
