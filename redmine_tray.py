@@ -70,7 +70,8 @@ tk_root        = None
 # ─────────────────────────────────────────────
 def make_icon(alert=False):
     """Carrega foto customizada ou gera ícone padrão. Adiciona bolinha vermelha se alert=True."""
-    size = 64
+    size = 100
+    emoji_size = 60
 
     if os.path.exists(CUSTOM_ICON_PATH):
         try:
@@ -80,16 +81,26 @@ def make_icon(alert=False):
     else:
         base = _default_icon(size)
 
+    # if alert:
+    #     draw = ImageDraw.Draw(base)
+    #     # draw.ellipse([44, 2, 62, 20], fill="#ef4444", outline="white", width=2)
+    #     draw.ellipse([35, 0, 64, 29], fill="#ffffff", outline="white", width=2)
+    # if alert:
     if alert:
-        draw = ImageDraw.Draw(base)
-        # draw.ellipse([44, 2, 62, 20], fill="#ef4444", outline="white", width=2)
-        draw.ellipse([35, 0, 64, 29], fill="#ffffff", outline="white", width=2)
-
+        try:
+            emoji_img = Image.new("RGBA", (emoji_size, emoji_size), (0, 0, 0, 0))
+            draw_e = ImageDraw.Draw(emoji_img)
+            fnt_emoji = ImageFont.truetype("seguiemj.ttf", emoji_size - 5)
+            draw_e.text((0, 0), "⚠️", font=fnt_emoji, embedded_color=True)
+            base.paste(emoji_img, (size - emoji_size, 0), emoji_img) 
+        except Exception:
+            draw = ImageDraw.Draw(base)
+            draw.ellipse([35, 0, 64, 29], fill="#ff0000", outline="white", width=2)
 
     return base
 
 
-def _default_icon(size=64):
+def _default_icon(size=100):
     img  = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
     draw.ellipse([4, 4, size - 4, size - 4], fill="#1e40af")
