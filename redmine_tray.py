@@ -1,5 +1,5 @@
 """
-Redmine Tray Monitor
+Monitor de tarefas do Redmine 
 ====================
 App de bandeja (system tray) que monitora suas tarefas no Redmine.
 Botao direito > Ver Tarefas (ou clique duplo) para abrir o popup.
@@ -12,7 +12,6 @@ import tkinter as tk
 from tkinter import font as tkfont
 import pystray
 from PIL import Image, ImageDraw, ImageFont
-import sys
 import os
 from config import SECRET_REDMINE_URL, SECRET_API_KEY
 
@@ -51,7 +50,7 @@ STATUS_COLORS = {
     "Fazer":                       "#64748b",
     "Analisar":                    "#eab308",
     "Impedimento":                 "#dc2626",
-    "Impedimento Desenvolvimento": "#b91c1c",
+    "Impedimento Desenvolvimento": "#dc2626",
 }
 
 # ─────────────────────────────────────────────
@@ -70,8 +69,8 @@ tk_root        = None
 # ─────────────────────────────────────────────
 def make_icon(alert=False):
     """Carrega foto customizada ou gera ícone padrão. Adiciona bolinha vermelha se alert=True."""
-    size = 100
-    emoji_size = 60
+    size = 140
+    emoji_size = 80
 
     if os.path.exists(CUSTOM_ICON_PATH):
         try:
@@ -81,11 +80,6 @@ def make_icon(alert=False):
     else:
         base = _default_icon(size)
 
-    # if alert:
-    #     draw = ImageDraw.Draw(base)
-    #     # draw.ellipse([44, 2, 62, 20], fill="#ef4444", outline="white", width=2)
-    #     draw.ellipse([35, 0, 64, 29], fill="#ffffff", outline="white", width=2)
-    # if alert:
     if alert:
         try:
             emoji_img = Image.new("RGBA", (emoji_size, emoji_size), (0, 0, 0, 0))
@@ -100,7 +94,7 @@ def make_icon(alert=False):
     return base
 
 
-def _default_icon(size=100):
+def _default_icon(size=140):
     img  = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
     draw.ellipse([4, 4, size - 4, size - 4], fill="#1e40af")
