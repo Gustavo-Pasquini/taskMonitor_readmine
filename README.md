@@ -7,16 +7,20 @@ App de bandeja (system tray) para Windows que monitora suas tarefas no Redmine e
 ## 🚀 Como instalar e configurar
 
 ### 1. Pré-requisitos
+
 - Python 3.8+ instalado → https://python.org
 - Redmine rodando em localhost com API REST habilitada
 
 ### 2. Habilitar a API do Redmine
+
 No seu Redmine:
+
 1. Acesse **Administração → Configurações → API**
 2. Marque **"Habilitar API REST"**
 3. Salve
 
 ### 3. Obter sua chave de API
+
 1. Acesse seu Redmine
 2. Clique no seu **nome de usuário** (canto superior direito)
 3. Vá em **"Minha conta"**
@@ -51,14 +55,17 @@ STATUS_MAP = {
 ### 6. Instalar dependências e iniciar
 
 **Opção A — Duplo clique:**
+
 ```
 iniciar.bat
 ```
 
 **Opção B — Manual:**
+
 ```bash
 pip install -r requirements.txt
 pythonw redmine_tray.py
+python redmine_tray.py
 ```
 
 > Use `pythonw` (sem janela de console) para rodar em background.
@@ -67,13 +74,13 @@ pythonw redmine_tray.py
 
 ## 🖱️ Como usar
 
-| Ação | Resultado |
-|------|-----------|
-| **Clique simples** no ícone | Abre popup com contagem por status |
-| **Botão direito** → "Atualizar" | Força atualização imediata |
-| **Botão direito** → "Sair" | Encerra o app |
-| Ícone **azul** | Tudo normal |
-| Ícone **vermelho** com bolinha | Houve mudanças desde a última verificação |
+| Ação                            | Resultado                                 |
+| ------------------------------- | ----------------------------------------- |
+| **Clique simples** no ícone     | Abre popup com contagem por status        |
+| **Botão direito** → "Atualizar" | Força atualização imediata                |
+| **Botão direito** → "Sair"      | Encerra o app                             |
+| Ícone **azul**                  | Tudo normal                               |
+| Ícone **vermelho** com bolinha  | Houve mudanças desde a última verificação |
 
 ---
 
@@ -84,6 +91,7 @@ pythonw redmine_tray.py
 3. No atalho, mude o **"Programa"** para `pythonw.exe` e o argumento para o caminho completo do `.py`
 
 Ou crie um arquivo `autostart.bat` na pasta Startup:
+
 ```batch
 start /B pythonw "C:\caminho\para\redmine_tray.py"
 ```
@@ -92,9 +100,9 @@ start /B pythonw "C:\caminho\para\redmine_tray.py"
 
 ## 🐛 Problemas comuns
 
-| Problema | Solução |
-|----------|---------|
-| Ícone não aparece | Verifique se `pystray` e `Pillow` foram instalados |
-| Contagens sempre zero | Confirme os nomes dos status em `STATUS_MAP` |
-| Erro de conexão | Verifique `REDMINE_URL` e se a API REST está habilitada |
-| Chave inválida | Regere a chave em "Minha conta" no Redmine |
+| Problema              | Solução                                                 |
+| --------------------- | ------------------------------------------------------- |
+| Ícone não aparece     | Verifique se `pystray` e `Pillow` foram instalados      |
+| Contagens sempre zero | Confirme os nomes dos status em `STATUS_MAP`            |
+| Erro de conexão       | Verifique `REDMINE_URL` e se a API REST está habilitada |
+| Chave inválida        | Regere a chave em "Minha conta" no Redmine              |
