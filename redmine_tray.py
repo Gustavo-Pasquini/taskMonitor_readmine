@@ -22,7 +22,7 @@ REDMINE_URL    = SECRET_REDMINE_URL
 API_KEY        = SECRET_API_KEY
 CHECK_INTERVAL = 30
 
-CUSTOM_ICON_PATH = "icon.png"
+CUSTOM_ICON_PATH = "icon_2.png"
 
 STATUS_MAP = {
     "Aprovado (subir Units)":      "Aprovado (subir Units)",
