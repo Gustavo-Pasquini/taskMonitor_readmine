@@ -54,7 +54,7 @@ SECRET_API_KEY     = "sua_chave_aqui"          # Chave de API do Redmine
 pythonw redmine_tray.py
 ```
 
-Use `pythonw` (sem console) ou `python` (com console, útil para ver erros/logs). Execute sempre a partir da raiz do projeto, pois o app lê `config.py` e `icon.png` por caminho relativo.
+Use `pythonw` (sem console) ou `python` (com console, útil para ver erros/logs).
 
 #### Opção B — Gerar um executável (.exe)
 
@@ -168,7 +168,7 @@ O intervalo de atualizacao automatica esta definido em `CHECK_INTERVAL = 30` (se
 ## Iniciar automaticamente com o Windows
 
 1. Pressione `Win + R` e digite `shell:startup`
-2. Copie o atalho criado na area de trabalho para essa pasta (ou crie um novo atalho apontando para `redmine_tray.exe`, ou para `redmine_tray.py` com **Iniciar em** apontando para a raiz do projeto)
+2. Copie o atalho criado na area de trabalho para essa pasta (ou crie um novo atalho apontando para `redmine_tray.exe` ou para `redmine_tray.py`)
 
 ---
 
