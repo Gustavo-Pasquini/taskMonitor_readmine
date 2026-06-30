@@ -8,7 +8,7 @@ STATUS_MAP = {
     "Refazendo":                   "Refazendo",
     "Refazer":                     "Refazer",
     "Fazendo":                     "Fazendo",
-    "Fazer":                       "Nova",
+    "Fazer":                       "Fazer",
     "Analisar":                    "Analisar",
     "Impedimento":                 "Impedimento",
     "Impedimento Desenvolvimento": "Impedimento Desenvolvimento",
@@ -34,7 +34,7 @@ STATUS_COLORS = {
 }
 
 CONFLICT_STATUSES = {
-    "Testar", "Testando", "Refazer", "Refazendo", "Fazer", "Nova",
+    "Testar", "Testando", "Refazer", "Refazendo", "Fazer",
     "Fazendo", "Em andamento", "Analisar", "Impedimento",
     "Impedimento Desenvolvimento", "Aberta",
 }
