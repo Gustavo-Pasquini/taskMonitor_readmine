@@ -21,7 +21,13 @@ git clone <url-do-repositorio>
 cd taskMonitor_readmine
 ```
 
-### 2. Configure suas credenciais
+### 2. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure suas credenciais
 
 Crie o arquivo `config.py` a partir do exemplo:
 
@@ -38,7 +44,29 @@ SECRET_API_KEY     = "sua_chave_aqui"          # Chave de API do Redmine
 
 > Para obter a chave: acesse seu Redmine > nome de usuário > **Minha conta** > **Chave de acesso API**
 
-### 3. Execute o iniciar.bat
+> `config.py` está no `.gitignore` — nunca commite suas credenciais.
+
+### 4. Escolha como executar
+
+#### Opção A — Rodar direto via linha de comando (sem gerar executável)
+
+```bash
+pythonw redmine_tray.py
+```
+
+Use `pythonw` (sem console) ou `python` (com console, útil para ver erros/logs). Execute sempre a partir da raiz do projeto, pois o app lê `config.py` e `icon.png` por caminho relativo.
+
+#### Opção B — Gerar um executável (.exe)
+
+Requer o PyInstaller instalado (`pip install pyinstaller`):
+
+```bash
+pyinstaller redmine_tray.spec --noconfirm
+```
+
+O executável é gerado em `dist\redmine_tray.exe`. Ele empacota `icon.png` e `config.py`, então **rebuilde sempre que alterar essas credenciais ou o ícone**. Copie o `.exe` para onde quiser (ex: área de trabalho) — mas rode-o com o diretório de trabalho apontando para a raiz do projeto (ex: via atalho com "Iniciar em"), pois o ícone do tray é resolvido por caminho relativo a `icon.png`.
+
+#### Opção C — Usar o `iniciar.bat` (automatizado)
 
 Dê duplo clique no `iniciar.bat`. Ele irá automaticamente:
 
@@ -121,7 +149,8 @@ O intervalo de atualizacao automatica esta definido em `CHECK_INTERVAL = 30` (se
 ## Iniciar automaticamente com o Windows
 
 1. Pressione `Win + R` e digite `shell:startup`
-2. Copie o atalho criado na area de trabalho para essa pasta
+2. Copie o atalho criado na area de trabalho para essa pasta (ou crie um novo atalho apontando para `redmine_tray.py`/`redmine_tray.exe`)
+3. No atalho, em **Propriedades > Iniciar em**, defina a raiz do projeto (`taskMonitor_readmine`) — necessario para o app encontrar `icon.png` e `config.py` por caminho relativo
 
 ---
 
