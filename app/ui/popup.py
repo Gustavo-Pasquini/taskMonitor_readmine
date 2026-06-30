@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import font as tkfont
 import app.state as state
-from app.settings import STATUS_MAP, STATUS_COLORS
+from app.settings import STATUS_COLORS
 from app.tray import make_icon
 from app.ui.utils import quit_app
 
@@ -28,7 +28,7 @@ def open_popup():
         w.attributes("-alpha", 0.97)
         w.configure(bg="#0f172a")
 
-        n_items  = len(STATUS_MAP)
+        n_items  = len(state.task_counts)
         win_w    = 290
         win_h    = 80 + n_items * 28 + 55
         screen_w = w.winfo_screenwidth()

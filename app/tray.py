@@ -1,15 +1,27 @@
 import os
+import sys
 from PIL import Image, ImageDraw, ImageFont
 from app.settings import CUSTOM_ICON_PATH
+
+
+def _icon_path():
+    """Resolve icon.png tanto rodando da fonte quanto empacotado (.exe),
+    independente de onde o executavel foi copiado (ex: area de trabalho)."""
+    if getattr(sys, "frozen", False):
+        base = getattr(sys, "_MEIPASS", os.path.dirname(sys.executable))
+    else:
+        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, CUSTOM_ICON_PATH)
 
 
 def make_icon(alert=False):
     size       = 140
     emoji_size = 80
 
-    if os.path.exists(CUSTOM_ICON_PATH):
+    icon_path = _icon_path()
+    if os.path.exists(icon_path):
         try:
-            base = Image.open(CUSTOM_ICON_PATH).convert("RGBA").resize((size, size), Image.LANCZOS)
+            base = Image.open(icon_path).convert("RGBA").resize((size, size), Image.LANCZOS)
         except Exception:
             base = _default_icon(size)
     else:

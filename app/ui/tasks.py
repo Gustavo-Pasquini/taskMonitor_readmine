@@ -4,10 +4,10 @@ import tkinter as tk
 from tkinter import font as tkfont
 import app.state as state
 import app.api as api
-from app.settings import STATUS_MAP, STATUS_COLORS, REFAZER_STATUSES
+import app.settings as settings
+from app.settings import STATUS_COLORS, REFAZER_STATUSES
 
 _tasks_window = None
-_STATUS_ORDER = [k for k, v in STATUS_MAP.items() if not v.startswith("__")]
 _load_gen     = [0]  # cancela carregamento antigo quando a lista é atualizada
 
 
@@ -102,12 +102,15 @@ def open_tasks():
 
             gen = _load_gen[0]
 
-            grouped  = {k: [] for k in _STATUS_ORDER}
+            status_map   = settings.get_status_map()
+            status_order = [k for k, v in status_map.items() if not v.startswith("__")]
+
+            grouped  = {k: [] for k in status_order}
             unmapped = []
             for issue in issues:
                 status_name = issue.get("status", {}).get("name", "")
                 matched = False
-                for label, mapped in STATUS_MAP.items():
+                for label, mapped in status_map.items():
                     if not mapped.startswith("__") and mapped == status_name:
                         grouped[label].append(issue)
                         matched = True
@@ -210,7 +213,7 @@ def open_tasks():
                         widget.bind("<Leave>",    _leave)
                         widget.bind("<Button-1>", _click)
 
-            for status_label in _STATUS_ORDER:
+            for status_label in status_order:
                 color = STATUS_COLORS.get(status_label, "#94a3b8")
                 _make_group(status_label, grouped[status_label], color)
 
