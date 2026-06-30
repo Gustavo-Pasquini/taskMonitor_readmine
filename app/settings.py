@@ -3,7 +3,7 @@ import os
 import sys
 
 CHECK_INTERVAL   = 30
-CUSTOM_ICON_PATH = "icon.png"
+CUSTOM_ICON_PATH = "icon_2.png"
 
 # Mapeamento padrao: label exibida -> nome exato do status no Redmine.
 # Pode ser sobrescrito em runtime via janela "Configurar Status" (sem

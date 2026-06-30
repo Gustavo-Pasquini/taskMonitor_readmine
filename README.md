@@ -64,7 +64,7 @@ Requer o PyInstaller instalado (`pip install pyinstaller`):
 pyinstaller redmine_tray.spec --noconfirm
 ```
 
-O executável é gerado em `dist\redmine_tray.exe`. Ele empacota `icon.png` e `config.py`, então **rebuilde sempre que alterar essas credenciais ou o ícone**. Pode copiar o `.exe` para onde quiser (ex: área de trabalho) e rodar direto — o ícone e as credenciais são resolvidos automaticamente, sem depender do diretório de trabalho.
+O executável é gerado em `dist\redmine_tray.exe`. Ele empacota `icon_2.png` e `config.py`, então **rebuilde sempre que alterar essas credenciais ou o ícone**. Pode copiar o `.exe` para onde quiser (ex: área de trabalho) e rodar direto — o ícone e as credenciais são resolvidos automaticamente, sem depender do diretório de trabalho.
 
 > A configuração de status (`status_map.json`) e gravada do lado do `.exe` em execução, então editar status pela UI (veja [Configuração dos status](#configuracao-dos-status)) **não precisa de rebuild**.
 

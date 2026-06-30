@@ -42,7 +42,7 @@ if errorlevel 1 (
 set "SHORTCUT=%USERPROFILE%\Desktop\Redmine Tray Monitor.lnk"
 if not exist "%SHORTCUT%" (
     echo Criando atalho na area de trabalho...
-    powershell -NoProfile -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%SHORTCUT%'); $s.TargetPath = 'pythonw'; $s.Arguments = '\"%~dp0redmine_tray.py\"'; $s.IconLocation = '%~dp0icon.png'; $s.WorkingDirectory = '%~dp0'; $s.Save()"
+    powershell -NoProfile -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%SHORTCUT%'); $s.TargetPath = 'pythonw'; $s.Arguments = '\"%~dp0redmine_tray.py\"'; $s.IconLocation = '%~dp0icon_2.png'; $s.WorkingDirectory = '%~dp0'; $s.Save()"
     echo Atalho criado.
 )
 

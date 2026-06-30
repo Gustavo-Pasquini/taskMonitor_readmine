@@ -5,7 +5,7 @@ from app.settings import CUSTOM_ICON_PATH
 
 
 def _icon_path():
-    """Resolve icon.png tanto rodando da fonte quanto empacotado (.exe),
+    """Resolve icon_2.png tanto rodando da fonte quanto empacotado (.exe),
     independente de onde o executavel foi copiado (ex: area de trabalho)."""
     if getattr(sys, "frozen", False):
         base = getattr(sys, "_MEIPASS", os.path.dirname(sys.executable))
