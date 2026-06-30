@@ -174,33 +174,38 @@ def open_tasks():
                     row = tk.Frame(tasks_frame, bg=row_bg, cursor="hand2")
                     row.pack(fill="x")
 
+                    badge = tk.Frame(row, bg=row_bg, highlightthickness=0)
+                    badge.pack(side="left", padx=(8, 0), pady=6)
+                    badge_lbl = tk.Label(badge, text="", bg=row_bg, fg="#ef4444", font=cnt_f)
+                    badge_lbl.pack(padx=5, pady=1)
+                    refazer_labels[issue_id] = (badge, badge_lbl)
+
                     lbl = tk.Label(
                         row, text=f"  #{issue_id}:  {issue_title}",
                         bg=row_bg, fg="#cbd5e1", font=task_f,
-                        anchor="w", pady=6, padx=8,
+                        anchor="w", pady=6, padx=4,
                     )
                     lbl.pack(side="left", fill="x", expand=True)
 
-                    ref_lbl = tk.Label(row, text="...", bg=row_bg, fg="#475569",
-                                       font=cnt_f, width=6, anchor="e", padx=8)
-                    ref_lbl.pack(side="right")
-                    refazer_labels[issue_id] = ref_lbl
-
-                    def _enter(e, r=row, l=lbl, rl=ref_lbl):
+                    def _enter(e, r=row, l=lbl, b=badge, bl=badge_lbl):
                         r.config(bg="#1e3a5f")
                         l.config(bg="#1e3a5f", fg="#ffffff")
-                        rl.config(bg="#1e3a5f")
+                        if not bl.cget("text"):
+                            b.config(bg="#1e3a5f")
+                            bl.config(bg="#1e3a5f")
 
-                    def _leave(e, r=row, l=lbl, rl=ref_lbl, bg=row_bg):
+                    def _leave(e, r=row, l=lbl, b=badge, bl=badge_lbl, bg=row_bg):
                         r.config(bg=bg)
                         l.config(bg=bg, fg="#cbd5e1")
-                        rl.config(bg=bg)
+                        if not bl.cget("text"):
+                            b.config(bg=bg)
+                            bl.config(bg=bg)
 
                     def _click(e, iid=issue_id, title=issue_title):
                         from app.ui.metrics import open_metrics
                         open_metrics(iid, title)
 
-                    for widget in (row, lbl, ref_lbl):
+                    for widget in (row, lbl, badge, badge_lbl):
                         widget.bind("<Enter>",    _enter)
                         widget.bind("<Leave>",    _leave)
                         widget.bind("<Button-1>", _click)
@@ -247,18 +252,22 @@ def open_tasks():
                     if _load_gen[0] != gen:
                         return
                     iid, count = future.result()
-                    lbl = refazer_labels.get(iid)
-                    if not lbl:
+                    widgets = refazer_labels.get(iid)
+                    if not widgets:
                         continue
-                    if count is None:
-                        text, color = "?", "#475569"
-                    elif count == 0:
-                        text, color = "", "#475569"
-                    else:
-                        text, color = f"↺ {count}", "#ef4444"
-                    state.tk_root.after(0, lambda t=text, c=color, l=lbl: (
-                        l.config(text=t, fg=c)
-                    ))
+                    badge, badge_lbl = widgets
+                    row_bg = badge.master.cget("bg")
+
+                    def _apply(b=badge, bl=badge_lbl, c=count, fallback_bg=row_bg):
+                        if c:
+                            b.config(bg="#2a1014", highlightthickness=1,
+                                     highlightbackground="#7f1d1d", highlightcolor="#7f1d1d")
+                            bl.config(text=str(c), fg="#ef4444", bg="#2a1014")
+                        else:
+                            b.config(bg=fallback_bg, highlightthickness=0)
+                            bl.config(text="", bg=fallback_bg)
+
+                    state.tk_root.after(0, _apply)
 
         btn_refresh.config(command=do_load)
         win.after(100, do_load)

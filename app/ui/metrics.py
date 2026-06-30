@@ -144,16 +144,16 @@ def open_metrics(issue_id, issue_title=""):
 
             cur_color = STATUS_COLORS.get(current_status, "#94a3b8")
             cur_card  = tk.Frame(badges, bg="#0c1a2e", padx=18, pady=10)
-            cur_card.pack(side="left", padx=(0, 10))
+            cur_card.pack(side="left", padx=(0, 10), fill="both", expand=True)
             tk.Label(cur_card, text="Status atual", bg="#0c1a2e",
-                     fg="#475569", font=badge_lf).pack(anchor="w")
+                     fg="#475569", font=badge_lf).pack(anchor="center")
             tk.Label(cur_card, text=current_status, bg="#0c1a2e",
-                     fg=cur_color, font=cur_f, wraplength=220, justify="left").pack(anchor="w")
+                     fg=cur_color, font=cur_f, wraplength=220, justify="center").pack(anchor="center")
 
             ref_color = "#ef4444" if refazer_count > 0 else "#22c55e"
             ref_bg    = "#2d0a0a"  if refazer_count > 0 else "#052e16"
             ref_card  = tk.Frame(badges, bg=ref_bg, padx=18, pady=10)
-            ref_card.pack(side="left")
+            ref_card.pack(side="left", fill="both", expand=True)
             tk.Label(ref_card, text=str(refazer_count), bg=ref_bg,
                      fg=ref_color, font=badge_f).pack()
             tk.Label(ref_card, text="vezes no Refazer", bg=ref_bg,

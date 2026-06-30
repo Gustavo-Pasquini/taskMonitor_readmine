@@ -104,14 +104,14 @@ Exibe a contagem de tarefas por status e totalizadores de **Abertas** e **Total*
 
 ### Janela "Listar Tarefas"
 
-Exibe todas as tarefas atribuidas a voce agrupadas por status. Os grupos comecam recolhidos — clique no header do status para expandir. Ao final de cada linha aparece o numero de vezes que a tarefa foi ao Refazer (`↺ N`). Clique em qualquer tarefa para abrir as metricas.
+Exibe todas as tarefas atribuidas a voce agrupadas por status. Os grupos comecam recolhidos — clique no header do status para expandir. No inicio de cada linha aparece, quando aplicavel, um badge vermelho com o numero de vezes que a tarefa foi ao status Refazer. Clique em qualquer tarefa para abrir as metricas.
 
 ### Janela de Metricas
 
 Aberta ao clicar em uma tarefa na listagem. Exibe:
 
-- Quantas vezes a tarefa foi ao **Refazer/Refazendo**
-- Status atual da tarefa
+- Quantas vezes a tarefa foi ao status **Refazer**
+- Status atual da tarefa (destacado em negrito)
 - Tabela com **tempo total** e **quantidade de entradas** em cada status (Analisar, Fazer, Fazendo, Testar, Testando, Refazer, Refazendo, Aprovado)
 
 Apenas uma janela de metricas pode estar aberta por vez. `ESC` fecha a janela.
@@ -135,7 +135,7 @@ Cada Redmine pode ter nomes de status customizados. Edite o dicionario `STATUS_M
 ```python
 STATUS_MAP = {
     "Fazendo":  "Em andamento",   # label exibida -> nome exato no Redmine
-    "Fazer":    "Nova",
+    "Fazer":    "A Fazer",
     # ...
 }
 ```
