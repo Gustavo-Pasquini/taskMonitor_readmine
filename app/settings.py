@@ -1,5 +1,5 @@
 CHECK_INTERVAL   = 30
-CUSTOM_ICON_PATH = "icon_2.png"
+CUSTOM_ICON_PATH = "icon.png"
 
 STATUS_MAP = {
     "Aprovado (subir Units)":      "Aprovado (subir Units)",
@@ -12,6 +12,7 @@ STATUS_MAP = {
     "Analisar":                    "Analisar",
     "Impedimento":                 "Impedimento",
     "Impedimento Desenvolvimento": "Impedimento Desenvolvimento",
+    "Gerar Build":                 "Gerar Build",
     "Abertas":                     "__ABERTAS__",
     "Total":                       "__TOTAL__",
 }
@@ -27,6 +28,7 @@ STATUS_COLORS = {
     "Analisar":                    "#eab308",
     "Impedimento":                 "#dc2626",
     "Impedimento Desenvolvimento": "#dc2626",
+    "Gerar Build":                 "#14b8a6",
     "Abertas":                     "#f1f5f9",
     "Total":                       "#ffffff",
 }
@@ -50,4 +52,5 @@ METRICS_STATUSES = [
     "Refazer",
     "Refazendo",
     "Aprovado (subir Units)",
+    "Gerar Build",
 ]
