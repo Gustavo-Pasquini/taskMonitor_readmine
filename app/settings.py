@@ -41,7 +41,7 @@ CONFLICT_STATUSES = {
 
 APPROVED_STATUSES = {"Aprovado (subir Units)"}
 
-REFAZER_STATUSES = {"Refazer", "Refazendo"}
+REFAZER_STATUSES = {"Refazer"}
 
 METRICS_STATUSES = [
     "Analisar",

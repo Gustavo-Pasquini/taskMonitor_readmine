@@ -102,6 +102,7 @@ def open_metrics(issue_id, issue_title=""):
         value_f  = tkfont.Font(family="Segoe UI", size=9)
         badge_f  = tkfont.Font(family="Segoe UI", size=16, weight="bold")
         badge_lf = tkfont.Font(family="Segoe UI", size=8)
+        cur_f    = tkfont.Font(family="Segoe UI", size=15, weight="bold")
         load_f   = tkfont.Font(family="Segoe UI", size=10)
 
         hdr = tk.Frame(win, bg="#0f172a", padx=16, pady=14)
@@ -141,22 +142,22 @@ def open_metrics(issue_id, issue_title=""):
             badges = tk.Frame(content, bg="#0f172a")
             badges.pack(fill="x", pady=(0, 14))
 
+            cur_color = STATUS_COLORS.get(current_status, "#94a3b8")
+            cur_card  = tk.Frame(badges, bg="#0c1a2e", padx=18, pady=10)
+            cur_card.pack(side="left", padx=(0, 10))
+            tk.Label(cur_card, text="Status atual", bg="#0c1a2e",
+                     fg="#475569", font=badge_lf).pack(anchor="w")
+            tk.Label(cur_card, text=current_status, bg="#0c1a2e",
+                     fg=cur_color, font=cur_f, wraplength=220, justify="left").pack(anchor="w")
+
             ref_color = "#ef4444" if refazer_count > 0 else "#22c55e"
             ref_bg    = "#2d0a0a"  if refazer_count > 0 else "#052e16"
             ref_card  = tk.Frame(badges, bg=ref_bg, padx=18, pady=10)
-            ref_card.pack(side="left", padx=(0, 10))
+            ref_card.pack(side="left")
             tk.Label(ref_card, text=str(refazer_count), bg=ref_bg,
                      fg=ref_color, font=badge_f).pack()
             tk.Label(ref_card, text="vezes no Refazer", bg=ref_bg,
                      fg=ref_color, font=badge_lf).pack()
-
-            cur_color = STATUS_COLORS.get(current_status, "#94a3b8")
-            cur_card  = tk.Frame(badges, bg="#0c1a2e", padx=18, pady=10)
-            cur_card.pack(side="left")
-            tk.Label(cur_card, text="Status atual", bg="#0c1a2e",
-                     fg="#475569", font=badge_lf).pack()
-            tk.Label(cur_card, text=current_status, bg="#0c1a2e",
-                     fg=cur_color, font=header_f).pack()
 
             tk.Frame(content, bg="#1e293b", height=1).pack(fill="x", pady=(0, 8))
 
